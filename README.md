@@ -14,4 +14,4 @@ NodeJS Portable is the NodeJS JavaScript runtime packaged with a PortableApps.co
 ## License
 
 * Portable application code released under [the MIT license](LICENSE).
-* NoeJS is released under [the MIT License](NodeJSPortable/App/NodeJS/node_modules/npm/LICENSE).
+* NodeJS is released under [the MIT License](https://raw.githubusercontent.com/nodejs/node/master/LICENSE).
