@@ -105,10 +105,10 @@ current SPDX license identifier for the license you're using, like this:
 
 You can check [the full list of SPDX license IDs](https://spdx.org/licenses/).
 Ideally you should pick one that is
-[OSI](http://opensource.org/licenses/alphabetical) approved.
+[OSI](https://opensource.org/licenses/alphabetical) approved.
 
 If your package is licensed under multiple common licenses, use an [SPDX license
-expression syntax version 2.0 string](http://npmjs.com/package/spdx), like this:
+expression syntax version 2.0 string](https://npmjs.com/package/spdx), like this:
 
     { "license" : "(ISC OR GPL-3.0)" }
 
@@ -468,8 +468,8 @@ included.  For example:
 ## Local Paths
 
 As of version 2.0.0 you can provide a path to a local directory that contains a
-package. Local paths can be saved using `npm install --save`, using any of
-these forms:
+package. Local paths can be saved using `npm install -S` or
+`npm install --save`, using any of these forms:
 
     ../foo/bar
     ~/foo/bar
@@ -726,4 +726,4 @@ npm will default some values based on package contents.
 * npm-faq(7)
 * npm-install(1)
 * npm-publish(1)
-* npm-rm(1)
+* npm-uninstall(1)

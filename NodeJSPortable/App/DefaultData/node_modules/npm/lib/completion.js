@@ -9,9 +9,8 @@ var configDefs = npmconf.defs
 var configTypes = configDefs.types
 var shorthands = configDefs.shorthands
 var nopt = require('nopt')
-var configNames = Object.keys(configTypes).filter(function (e) {
-      return e.charAt(0) !== '_'
-    })
+var configNames = Object.keys(configTypes)
+  .filter(function (e) { return e.charAt(0) !== '_' })
 var shorthandNames = Object.keys(shorthands)
 var allConfs = configNames.concat(shorthandNames)
 var once = require('once')
@@ -46,8 +45,8 @@ completion.completion = function (opts, cb) {
 }
 
 function completion (args, cb) {
-  if (process.platform === 'win32') {
-    var e = new Error('npm completion not supported on windows')
+  if (process.platform === 'win32' && !(/^MINGW(32|64)$/.test(process.env.MSYSTEM))) {
+    var e = new Error('npm completion supported only in MINGW / Git bash on Windows')
     e.code = 'ENOTSUP'
     e.errno = require('constants').ENOTSUP
     return cb(e)
@@ -167,7 +166,6 @@ function dumpScript (cb) {
       if (er.errno === 'EPIPE') er = null
       cb(er)
     })
-
   })
 }
 
