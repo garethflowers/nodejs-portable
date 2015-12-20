@@ -129,9 +129,8 @@ function diffTrees (oldTree, newTree) {
     pkg.isInLink = (pkg.oldPkg && isLink(pkg.oldPkg.parent)) ||
                    (pkg.parent && isLink(pkg.parent)) ||
                    requiredByAllLinked(pkg)
-    if (pkg.fromBundle) return
     if (pkg.oldPkg) {
-      if (!pkg.directlyRequested && pkgAreEquiv(pkg.oldPkg.package, pkg.package)) return
+      if (!pkg.userRequired && pkgAreEquiv(pkg.oldPkg.package, pkg.package)) return
       if (!pkg.isInLink && (isLink(pkg.oldPkg) || isLink(pkg))) {
         differences.push(['update-linked', pkg])
       } else {
@@ -139,7 +138,7 @@ function diffTrees (oldTree, newTree) {
       }
     } else {
       var vername = getNameAndVersion(pkg.package)
-      if (toRemoveByNameAndVer[vername] && toRemoveByNameAndVer[vername].length) {
+      if (toRemoveByNameAndVer[vername] && toRemoveByNameAndVer[vername].length && !pkg.fromBundle) {
         var flatname = toRemoveByNameAndVer[vername].shift()
         pkg.fromPath = toRemove[flatname].path
         differences.push(['move', pkg])

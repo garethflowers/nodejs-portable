@@ -1,6 +1,7 @@
 'use strict'
 var validate = require('aproba')
 var asyncMap = require('slide').asyncMap
+var npm = require('../npm.js')
 
 module.exports = function (differences, decomposed, next) {
   validate('AAF', arguments)
@@ -10,7 +11,7 @@ module.exports = function (differences, decomposed, next) {
     switch (cmd) {
       case 'add':
       case 'update':
-          addSteps(decomposed, pkg, done)
+        addSteps(decomposed, pkg, done)
         break
       case 'move':
         moveSteps(decomposed, pkg, done)
@@ -24,13 +25,17 @@ module.exports = function (differences, decomposed, next) {
 }
 
 function addSteps (decomposed, pkg, done) {
-  decomposed.push(['fetch', pkg])
-  decomposed.push(['extract', pkg])
-  decomposed.push(['preinstall', pkg])
-  decomposed.push(['build', pkg])
-  decomposed.push(['install', pkg])
-  decomposed.push(['postinstall', pkg])
-  decomposed.push(['test', pkg])
+  if (!pkg.fromBundle) {
+    decomposed.push(['fetch', pkg])
+    decomposed.push(['extract', pkg])
+    decomposed.push(['test', pkg])
+  }
+  if (!pkg.fromBundle || npm.config.get('rebuild-bundle')) {
+    decomposed.push(['preinstall', pkg])
+    decomposed.push(['build', pkg])
+    decomposed.push(['install', pkg])
+    decomposed.push(['postinstall', pkg])
+  }
   decomposed.push(['finalize', pkg])
   done()
 }
