@@ -1,3 +1,0 @@
-cache = ${PAL:DataDir}\npm_cache
-prefix = ${PAL:DataDir}
-userconfig = ${PAL:DataDir}\.npmrc
