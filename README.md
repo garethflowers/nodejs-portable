@@ -13,7 +13,7 @@ the machine you run it on, so you can take it with you wherever you go.
 
 ## Credits
 
-*	NodeJS Portable is a redistribution of [NodeJS][N2].
+*	NodeJS Portable is a redistribution of [NodeJS][2].
 
 ## License
 
